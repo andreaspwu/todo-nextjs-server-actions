@@ -73,36 +73,3 @@ export async function DELETE(request) {
     status: 200,
   })
 }
-
-export async function PATCH(request) {
-  const { searchParams } = new URL(request.url)
-  const existingJsonData = JSON.parse(await fetchJsonData())
-  const body = await request.json()
-  const id = searchParams.get('id')
-
-  // console.log('id', id)
-
-  const newJsonData = existingJsonData.filter(
-    (todo) => `${todo.id}` === `${id}`
-  )
-  const newTodo = {
-    id: id,
-    title: body.title,
-    completed: false,
-  }
-  const updatedTodo = {
-    newTodo,
-    ...newJsonData,
-  }
-  await fs.writeFile(
-    jsonDirectory() + '/todos.json',
-    JSON.stringify(updatedTodo),
-    {
-      encoding: 'utf-8',
-    }
-  )
-
-  return new Response(JSON.stringify(body), {
-    status: 200,
-  })
-}

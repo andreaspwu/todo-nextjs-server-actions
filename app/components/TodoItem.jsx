@@ -1,15 +1,8 @@
 'use client'
 import { useTransition } from 'react'
 
-export const TodoItem = ({
-  todo,
-  deleteTodo,
-  value,
-  setTitle,
-  setIsUpdated,
-}) => {
+export const TodoItem = ({ todo, deleteTodo }) => {
   const [isPending, startTransition] = useTransition()
-
   return (
     <li
       key={todo.id}
@@ -26,15 +19,6 @@ export const TodoItem = ({
         />
         <span className="ml-3">{todo.title}</span>
       </div>
-      <button
-        className="px-3 py-1 bg-purple-300 rounded-md right-4"
-        onClick={() => {
-          setTitle(value)
-          setIsUpdated(true)
-        }}
-      >
-        Edit
-      </button>
     </li>
   )
 }
