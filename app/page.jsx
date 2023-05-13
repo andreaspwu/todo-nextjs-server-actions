@@ -1,6 +1,6 @@
 // import Image from 'next/image'
 import { AddTodoForm } from './components/AddTodoForm'
-import { TodoItem } from './components/TodoItem'
+
 // import * as TodoApi from './utils/api-utils/todo-api'
 import { revalidatePath } from 'next/cache'
 
@@ -60,12 +60,7 @@ export default async function HomePage() {
 
   return (
     <div className="w-[400px] max-w-[97%] mx-auto flex flex-col items-center justify-center min-h-screen py-2">
-      <AddTodoForm addNewTodo={addNewTodo} />
-      <ul className="w-full flex flex-col space-y-2">
-        {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} deleteTodo={delTodo} />
-        ))}
-      </ul>
+      <AddTodoForm todos={todos} deleteTodo={delTodo} addNewTodo={addNewTodo} />
     </div>
   )
 }
